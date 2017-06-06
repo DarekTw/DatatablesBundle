@@ -22,19 +22,19 @@
 
 $("#{{ view_table_id }}_multiselect_actions").append("{{ multiple_actions|e('js') }}");
 
-$(".{{ view_table_id }}_multiselect_checkall").click(function(event) {
+$("#{{ view_table_id }} .multiselect_checkall").click(function(event) {
     var that = this;
-    $("input.{{ view_table_id }}_multiselect_checkbox:checkbox").each(function() {
+    $("#{{ view_table_id }} input.multiselect_checkbox:checkbox").each(function() {
         this.checked = that.checked;
     });
 });
 
-$(selector).on('click', 'input.{{ view_table_id }}_multiselect_checkbox', function(event) {
+$(selector).on('click', '#{{ view_table_id }} input.multiselect_checkbox', function(event) {
     updateCheckAll();
 });
 
-$(".{{ view_table_id }}_multiselect_action_click").on('click', function(event) {
-    var length = $("input.{{ view_table_id }}_multiselect_checkbox:checkbox:checked").length;
+$("#{{ view_table_id }}_multiselect_actions .multiselect_action_click").on('click', function(event) {
+    var length = $("#{{ view_table_id }} input.multiselect_checkbox:checkbox:checked").length;
 
     event.preventDefault();
 
@@ -44,13 +44,13 @@ $(".{{ view_table_id }}_multiselect_action_click").on('click', function(event) {
         }
 
         {% set token = csrf_token('multiselect') %}
-
+        
         $.ajax({
             url: $(this).attr("href"),
             type: "POST",
             cache: false,
             data: {
-                'data': $("input:checkbox:checked.{{ view_table_id }}_multiselect_checkbox", oTable.rows().nodes()).serializeArray(),
+                'data': $("#{{ view_table_id }} input.multiselect_checkbox:checkbox:checked").serializeArray(),
                 'token': '{{ token }}'
             },
             success: function(msg) {
@@ -70,9 +70,9 @@ $(".{{ view_table_id }}_multiselect_action_click").on('click', function(event) {
 });
 
 function updateCheckAll(){
-    var $individual_all        = $("input.{{ view_table_id }}_multiselect_checkbox:checkbox");
-    var $individual_checked    = $("input.{{ view_table_id }}_multiselect_checkbox:checkbox:checked");
-    var $all                   = $(".{{ view_table_id }}_multiselect_checkall");
+    var $individual_all        = $("#{{ view_table_id }} input.multiselect_checkbox:checkbox");
+    var $individual_checked    = $("#{{ view_table_id }} input.multiselect_checkbox:checkbox:checked");
+    var $all                   = $("#{{ view_table_id }} .multiselect_checkall");
 
     if($individual_checked.length === 0){
         $all.prop('checked', false);

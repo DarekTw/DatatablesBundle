@@ -40,7 +40,7 @@ class MultiselectAction extends Action
 
         $tableName = $this->tableName;
         $resolver->setNormalizer('attributes', function($options, $value) use($tableName) {
-            $baseClass = $tableName . '_multiselect_action_click';
+            $baseClass = $tableName . '_multiselect_action_click multiselect_action_click';
             $value['class'] = array_key_exists('class', $value) ? ($value['class'] . ' ' . $baseClass) : $baseClass;
 
             return $value;

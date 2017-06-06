@@ -163,9 +163,9 @@ class MultiselectColumn extends ActionColumn
             $this->attributes['name'] = $this->tableName . '_multiselect_checkbox';
         }
         if (array_key_exists('class', $this->attributes)) {
-            $this->attributes['class'] = $this->tableName . '_multiselect_checkbox ' . $this->attributes['class'];
+            $this->attributes['class'] = $this->tableName . '_multiselect_checkbox multiselect_checkbox ' . $this->attributes['class'];
         } else {
-            $this->attributes['class'] = $this->tableName . '_multiselect_checkbox';
+            $this->attributes['class'] = $this->tableName . '_multiselect_checkbox multiselect_checkbox';
         }
 
         return $this;
